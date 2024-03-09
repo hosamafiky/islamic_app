@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "495302383021",
+    "project_id": "islamicapp-33038",
+    "storage_bucket": "islamicapp-33038.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495302383021:android:70fb38c6f1ecca7828fd24",
+        "android_client_info": {
+          "package_name": "com.impulses.islamic_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARFrn0MYyvIwW-p1DP_9VZFoj0HPZJ-9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

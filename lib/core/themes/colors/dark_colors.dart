@@ -1,0 +1,41 @@
+part of '../data/themes.dart';
+
+class DarkAppColors {
+  static const primary = Color(0xFF863ED5);
+  static const secondary = Color(0xFF2E2E2E);
+  static const accent = Color(0xFF4A4A4A);
+  static const background = Color(0xFF121212);
+  static const surface = Color(0xFF333333);
+  static const error = Color(0xFFCF6679);
+  static const iconColor = Color(0xFFA19CC5);
+  static const onSecondary = Color(0xFFFFFFFF);
+  static const onAccent = Color(0xFFFFFFFF);
+  static const onBackground = Color(0xFFFFFFFF);
+  static const onSurface = Color(0xFFFFFFFF);
+  static const onError = Color(0xFFFFFFFF);
+  static const shadow = Color(0xFF000000);
+  static const shadowLight = Color(0xFF000000);
+  static const shadowDark = Color(0xFF000000);
+  static const shadowError = Color(0xFF000000);
+  static const shadowSuccess = Color(0xFF000000);
+  static const shadowInfo = Color(0xFF000000);
+  static const shadowWarning = Color(0xFF000000);
+  static const shadowPrimary = Color(0xFF000000);
+  static const shadowSecondary = Color(0xFF000000);
+  static const shadowAccent = Color(0xFF000000);
+  static const shadowBackground = Color(0xFF000000);
+  static const shadowSurface = Color(0xFF000000);
+  static const shadowOnPrimary = Color(0xFF000000);
+  static const shadowOnSecondary = Color(0xFF000000);
+  static const shadowOnAccent = Color(0xFF000000);
+  static const shadowOnBackground = Color(0xFF000000);
+  static const shadowOnSurface = Color(0xFF000000);
+  static const shadowOnError = Color(0xFF000000);
+  static const shadowOnSuccess = Color(0xFF000000);
+  static const shadowOnInfo = Color(0xFF000000);
+  static const shadowOnWarning = Color(0xFF000000);
+  static const shadowOnPrimaryLight = Color(0xFF000000);
+  static const shadowOnSecondaryLight = Color(0xFF000000);
+  static const shadowOnAccentLight = Color(0xFF000000);
+  static const shadowOnBackgroundLight = Color(0xFF000000);
+}

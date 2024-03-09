@@ -1,0 +1,70 @@
+name: islamic_app
+description: "A new Flutter project."
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: "none"
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.4 <4.0.0"
+
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  geolocator: ^11.0.0
+  dio: ^5.4.1
+  firebase_core: ^2.25.5
+  firebase_messaging: ^14.7.17
+  flutter_local_notifications: ^16.3.2
+  flutter_bloc: ^8.1.4
+  equatable: ^2.0.5
+  internet_connection_checker: ^1.0.0+1
+  dartz: ^0.10.1
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/sounds/
+    - assets/quran/
+    - assets/quran/surahs/
+    - assets/icons/
+
+  fonts:
+    - family: Amiri
+      fonts:
+        - asset: assets/fonts/amiri/Amiri-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/amiri/Amiri-Bold.ttf
+          weight: 700
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/poppins/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/poppins/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/poppins/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/poppins/Poppins-Black.ttf
+          weight: 900
