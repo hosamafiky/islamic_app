@@ -25,6 +25,8 @@ dependencies:
   shimmer: ^3.0.0
   flutter_svg: ^2.0.10+1
   shared_preferences: ^2.2.2
+  mqtt_client: ^10.2.0
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:

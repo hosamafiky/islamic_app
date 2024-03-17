@@ -98,6 +98,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         scaffoldMessengerKey: snackbarKey,
+        navigatorKey: navigatorKey,
         title: 'Islamic App',
         debugShowCheckedModeBanner: false,
         theme: Themes.light,
