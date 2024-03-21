@@ -1,38 +1,38 @@
-# name: FIREBASE_APP_DISTRIBUTION
+name: FIREBASE_APP_DISTRIBUTION
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   distribute_to_firebase:
-#     runs-on: macos-latest
-#     steps:
-#       - name: CHECKOUT MY REPO CODE
-#         uses: actions/checkout@v2
+jobs:
+  distribute_to_firebase:
+    runs-on: macos-latest
+    steps:
+      - name: CHECKOUT MY REPO CODE
+        uses: actions/checkout@v2
 
-#       - name: SETUP JDK 17
-#         uses: actions/setup-java@v2
-#         with:
-#           java-version: "17.0.9"
-#           distribution: "temurin"
+      - name: SETUP JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: "17.0.9"
+          distribution: "temurin"
 
-#       - name: SETUP FLUTTER
-#         uses: subosito/flutter-action@v2
-#         with:
-#           channel: stable
+      - name: SETUP FLUTTER
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
 
-#       - name: SETUP RUBY
-#         uses: ruby/setup-ruby@v1
-#         with:
-#           ruby-version: "3.2.2"
-#           bundler-cache: true
-#           working-directory: android
+      - name: SETUP RUBY
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.2"
+          bundler-cache: true
+          working-directory: android
 
-#       - name: BUILD AND DISTRIBUTE APP
-#         env:
-#           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-#         run: |
-#           bundle exec fastlane android firebase_android_app_distribution
-#         working-directory: android
+      - name: BUILD AND DISTRIBUTE APP
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+        run: |
+          bundle exec fastlane android firebase_android_app_distribution
+        working-directory: android
