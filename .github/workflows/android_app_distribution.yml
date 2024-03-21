@@ -1,0 +1,56 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  JAVA_VERSION: "16.0.2"
+  FLUTTER_VERSION: "3.16.7"
+  FLUTTER_CHANNEL: "stable"
+  # PROPERTIES_PATH: "./android/key.properties"
+
+jobs:
+  build:
+    name: Build & Release
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: ${{env.JAVA_VERSION}}
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: ${{env.FLUTTER_CHANNEL}}
+          flutter-version: ${{env.FLUTTER_VERSION}}
+      # - run: |
+      #     echo keyPassword=\${{ secrets.KEY_STORE }} > ${{env.PROPERTIES_PATH}}
+      #     echo storePassword=\${{ secrets.KEY_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
+      #     echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
+      # - run: echo "${{ secrets.KEYSTORE1 }}" | base64 --decode > android/app/upload-keystore.jks
+      # - run: echo storeFile=../app/upload-keystore.jks >> ${{env.PROPERTIES_PATH}}
+      - run: flutter clean
+      # - run: flutter pub get
+      - run: flutter build apk --release --split-per-abi
+      - run: |
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
+      # - run: flutter build appbundle
+      # - name: Deploy to Google Play
+      #   uses: r0adkll/upload-google-play@v1
+      #   with:
+      #     serviceAccountJsonPlainText: '${{ secrets.SERVICE_ACCOUNT_JSON }}'
+      #     packageName: com.impulsescorp.homeImpulse
+      #     releaseFiles: "./build/app/outputs/bundle/release/app-release.aab"
