@@ -2,12 +2,15 @@ part of '../data/themes.dart';
 
 class LightAppColors {
   static const primaryColor = Color(0xFF863ED5);
+  static const unselectedLabelColor = Color(0xFF8789A3);
+  static const labelColor = Color(0xFF672CBC);
   static const primaryColorDark = Color(0xFF240F4F);
   static const primaryColorLight = Color(0xFFC5CAE9);
   static const accentColor = Color(0xFFFFC107);
   static const primaryTextColor = Color(0xFF212121);
   static const secondaryTextColor = Color(0xFF757575);
   static const dividerColor = Color(0xFFBBC4CE);
+  static const tabbarDividerColor = Color(0x1A8789A3);
   static const scaffoldBackgroundColor = Color(0xFFFFFFFF);
   static const backgroundColor = Color(0xFFF5F5F5);
   static const errorColor = Color(0xFFD32F2F);

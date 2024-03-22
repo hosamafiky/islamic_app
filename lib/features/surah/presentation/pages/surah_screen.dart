@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/utils/app_text_styles.dart';
 
 import '../../../quran/domain/entities/surah.dart';
 
@@ -16,7 +17,12 @@ class SurahScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: surah.verses.map((e) => Text(e.text)).toList(),
+          children: surah.verses
+              .map((e) => Text(
+                    e.text,
+                    style: LightAppTextStyles.amiriBold18,
+                  ))
+              .toList(),
         ),
       ),
     );

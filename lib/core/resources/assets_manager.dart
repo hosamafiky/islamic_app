@@ -1,9 +1,23 @@
 class AssetsManager {
-  static Icons icons = Icons();
+  static AssetIcons icons = AssetIcons();
+  static AssetImages images = AssetImages();
 }
 
-class Icons {
+class AssetIcons {
   final String _path = 'assets/icons/';
+  AssetSvgs svg = AssetSvgs();
 
   String get shape1 => '${_path}shape1.png';
+}
+
+class AssetImages {
+  final String _path = 'assets/images/';
+
+  String get quran => '${_path}quran.png';
+}
+
+class AssetSvgs {
+  final String _path = 'assets/icons/svg_icons/';
+
+  String get readme => '${_path}readme.svg';
 }

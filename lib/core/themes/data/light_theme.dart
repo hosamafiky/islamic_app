@@ -5,23 +5,29 @@ class LightTheme {
         fontFamily: 'Poppins',
         brightness: Brightness.light,
         scaffoldBackgroundColor: LightAppColors.scaffoldBackgroundColor,
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           color: LightAppColors.scaffoldBackgroundColor,
           elevation: 0,
           centerTitle: false,
           surfaceTintColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle(
+          systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.dark,
           ),
-          titleTextStyle: TextStyle(
-            fontFamily: 'Poppins',
-            color: LightAppColors.primaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: IconThemeData(
+          titleTextStyle: LightAppTextStyles.bold20,
+          iconTheme: const IconThemeData(
             color: LightAppColors.iconColor,
+          ),
+        ),
+        tabBarTheme: TabBarTheme(
+          labelColor: LightAppColors.primaryColor,
+          unselectedLabelColor: LightAppColors.unselectedLabelColor,
+          labelStyle: LightAppTextStyles.semiBold16,
+          unselectedLabelStyle: LightAppTextStyles.medium16,
+          dividerHeight: 3,
+          dividerColor: LightAppColors.tabbarDividerColor,
+          indicator: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: LightAppColors.labelColor, width: 3)),
           ),
         ),
         primaryColor: LightAppColors.primaryColor,

@@ -9,6 +9,7 @@ import 'package:islamic_app/features/quran/data/repositories/quran_repository_im
 import 'package:islamic_app/features/quran/domain/usecases/get_juzs_usecase.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_surahs_usecase.dart';
 import 'package:islamic_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:sizer/sizer.dart';
 
 import 'core/globals/global_keys.dart';
 import 'core/helpers/dio_helper.dart';
@@ -96,13 +97,17 @@ class MyApp extends StatelessWidget {
             ..getPages(),
         ),
       ],
-      child: MaterialApp(
-        scaffoldMessengerKey: snackbarKey,
-        navigatorKey: navigatorKey,
-        title: 'Islamic App',
-        debugShowCheckedModeBanner: false,
-        theme: Themes.light,
-        onGenerateRoute: AppRouter.onGenerateRoute,
+      child: Sizer(
+        builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            scaffoldMessengerKey: snackbarKey,
+            navigatorKey: navigatorKey,
+            title: 'Islamic App',
+            debugShowCheckedModeBanner: false,
+            theme: Themes.light,
+            onGenerateRoute: AppRouter.onGenerateRoute,
+          );
+        },
       ),
     );
   }

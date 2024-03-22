@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:islamic_app/core/utils/app_text_styles.dart';
 import 'package:islamic_app/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:islamic_app/features/surah/presentation/pages/surah_screen.dart';
 
@@ -34,38 +35,21 @@ class SurahHorizWidget extends StatelessWidget {
         child: Center(
           child: Text(
             int.parse(surah.index).toString(),
-            style: TextStyle(
-              color: Theme.of(context).primaryColorDark,
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-            ),
+            style: LightAppTextStyles.medium14,
           ),
         ),
       ),
       title: Text(
         surah.title,
-        style: TextStyle(
-          color: Theme.of(context).primaryColorDark,
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-        ),
+        style: LightAppTextStyles.medium16,
       ),
       subtitle: Text(
-        '${surah.type} - ${surah.count} verses',
-        style: TextStyle(
-          color: Theme.of(context).appBarTheme.iconTheme?.color,
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-        ),
+        '${surah.type} - ${surah.count} verses'.toUpperCase(),
+        style: LightAppTextStyles.medium12,
       ),
       trailing: Text(
         surah.titleAr.split(' ').last,
-        style: TextStyle(
-          fontFamily: 'Amiri',
-          color: Theme.of(context).primaryColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
+        style: LightAppTextStyles.amiriBold20,
       ),
     );
   }
