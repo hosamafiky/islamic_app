@@ -89,7 +89,7 @@ class VerseModel extends Verse {
 
   factory VerseModel.fromEntry(MapEntry<String, dynamic> entry) {
     return VerseModel(
-      number: int.parse(entry.key.split('_').last),
+      number: int.parse(entry.key.split('_').last) + 1,
       key: entry.key,
       text: entry.value,
     );
