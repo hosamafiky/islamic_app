@@ -17,7 +17,7 @@ class QuranCubit extends Cubit<QuranState> {
     required this.getSurahsUsecase,
     required this.getJuzsUsecase,
     required this.getPagesUsecase,
-  }) : super(QuranInitial());
+  }) : super(const QuranInitial());
 
   final GetSurahsUsecase getSurahsUsecase;
   final GetJuzsUsecase getJuzsUsecase;
@@ -48,5 +48,13 @@ class QuranCubit extends Cubit<QuranState> {
       (error) => emit(PagesError(error: error, surahs: state.surahs, juzs: state.juzs, pagination: state.pagination)),
       (pages) => emit(PagesLoaded(surahs: state.surahs, juzs: state.juzs, pages: state.pages + pages.$2, pagination: pages.$1)),
     );
+  }
+
+  void resetPagination() {
+    emit(QuranInitial(
+      surahs: state.surahs,
+      juzs: state.juzs,
+      pages: state.pages,
+    ));
   }
 }

@@ -9,7 +9,7 @@ class Pagination extends Equatable {
   const Pagination({
     this.currentPage = 1,
     this.pageSize = 10,
-    this.totalPages = 1,
+    this.totalPages = 2,
   });
 
   Pagination copyWith({

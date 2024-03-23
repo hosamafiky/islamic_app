@@ -24,7 +24,15 @@ abstract class QuranState extends Equatable {
   List<Object?> get props => [surahs, juzs, pages, pagination, error];
 }
 
-class QuranInitial extends QuranState {}
+class QuranInitial extends QuranState {
+  const QuranInitial({
+    super.surahs = const <Surah>[],
+    super.juzs = const <Juz>[],
+    super.pages = const <Page>[],
+    super.pagination = const Pagination(),
+    super.error,
+  });
+}
 
 class SurahsLoaded extends QuranState {
   const SurahsLoaded({

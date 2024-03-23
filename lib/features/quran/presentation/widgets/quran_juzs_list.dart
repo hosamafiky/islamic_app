@@ -15,7 +15,9 @@ class _QuranJuzsListState extends State<QuranJuzsList> {
   final scrollController = ScrollController();
 
   void onScroll(int pageNumber, int totalPages) {
+    print('pixels: ${scrollController.position.pixels}, maxScrollExtent: ${scrollController.position.maxScrollExtent - 20}');
     if (scrollController.position.pixels >= scrollController.position.maxScrollExtent - 20) {
+      print('pageNumber: $pageNumber, totalPages: $totalPages');
       if (pageNumber < totalPages) {
         context.read<QuranCubit>().getJuzs(pageNumber + 1);
       }

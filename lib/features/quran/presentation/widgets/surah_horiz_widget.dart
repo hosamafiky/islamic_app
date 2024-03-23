@@ -13,9 +13,7 @@ class SurahHorizWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () async {
-        Navigator.of(context).pushNamed(SurahScreen.routeName, arguments: surah);
-      },
+      onTap: () => Navigator.pushNamed(context, SurahScreen.routeName, arguments: surah),
       visualDensity: VisualDensity.compact,
       leading: Container(
         width: 36,
