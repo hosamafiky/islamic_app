@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_app/core/utils/app_text_styles.dart';
-import 'package:islamic_app/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:islamic_app/features/surah/presentation/pages/surah_screen.dart';
 
 import '../../../../core/resources/assets_manager.dart';
@@ -16,11 +14,7 @@ class SurahHorizWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () async {
-        final newSurah = await context.read<QuranCubit>().getSurah(surah);
-        if (newSurah != null) {
-          if (!context.mounted) return;
-          Navigator.of(context).pushNamed(SurahScreen.routeName, arguments: newSurah);
-        }
+        Navigator.of(context).pushNamed(SurahScreen.routeName, arguments: surah);
       },
       visualDensity: VisualDensity.compact,
       leading: Container(

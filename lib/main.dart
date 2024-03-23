@@ -16,7 +16,6 @@ import 'core/helpers/dio_helper.dart';
 import 'core/observers/bloc_observer.dart';
 import 'core/themes/data/themes.dart';
 import 'features/quran/domain/usecases/get_pages_usecase.dart';
-import 'features/quran/domain/usecases/get_surah_usecase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,17 +46,6 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => QuranCubit(
-            getSurahUsecase: GetSurahUsecase(
-              QuranRepositoryImpl(
-                checker: InternetConnectionChecker(),
-                quranLocalDataSource: QuranLocalDatasourceImpl(
-                  cacheHelper: CacheHelper(),
-                ),
-                quranRemoteDataSource: QuranRemoteDatasourceImpl(
-                  dioHelper: DioHelper(),
-                ),
-              ),
-            ),
             getPagesUsecase: GetPagesUsecase(
               QuranRepositoryImpl(
                 checker: InternetConnectionChecker(),

@@ -50,14 +50,4 @@ class QuranRepositoryImpl implements QuranRepository {
       return Left(UnhandledError(message: excep.message));
     }
   }
-
-  @override
-  Future<Either<AppError, Surah>> getSurah(Surah surah) async {
-    try {
-      final surahDetails = await quranLocalDataSource.getSurah(surah);
-      return Right(surahDetails);
-    } on UnhandledCodeException catch (excep) {
-      return Left(UnhandledError(message: excep.message));
-    }
-  }
 }

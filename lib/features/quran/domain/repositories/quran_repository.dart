@@ -6,7 +6,6 @@ import 'package:islamic_app/features/quran/domain/entities/surah.dart';
 
 abstract class QuranRepository {
   Future<Either<AppError, List<Surah>>> getSurahs();
-  Future<Either<AppError, Surah>> getSurah(Surah surah);
   Future<Either<AppError, List<Juz>>> getJuzs();
   Future<Either<AppError, List<Page>>> getPages();
 }

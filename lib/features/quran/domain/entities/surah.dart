@@ -174,10 +174,12 @@ class VerseRange {
 }
 
 class Verse {
+  final int number;
   final String key;
   final String text;
 
   const Verse({
+    required this.number,
     required this.key,
     required this.text,
   });

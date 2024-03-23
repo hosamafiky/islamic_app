@@ -44,8 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          titleSpacing: 27.aw,
           leading: IconButton(
-            icon: const Icon(Icons.menu),
+            icon: AssetsManager.icons.svg.menu.asSvg(width: 24.aw, height: 24.aw),
             onPressed: () {},
           ),
         ),
@@ -62,73 +63,54 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Brother',
                 style: LightAppTextStyles.semiBold24,
               ),
-              SizedBox(height: 24.ah),
+              24.vsb,
               Container(
                 height: 131.ah,
+                padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF863ED5),
-                      Color(0xFF994EF8),
-                    ],
+                  image: DecorationImage(
+                    image: AssetImage(AssetsManager.images.lastRead),
+                    fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Stack(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PositionedDirectional(
-                      end: -50.aw,
-                      bottom: -29.ah,
-                      child: Image.asset(
-                        AssetsManager.images.quran,
-                        height: 126.ah,
-                        width: 206.aw,
+                    Row(
+                      children: [
+                        AssetsManager.icons.svg.readme.asSvg(
+                          width: 24.aw,
+                          height: 24.ah,
+                        ),
+                        SizedBox(width: 8.aw),
+                        Text(
+                          'Last Read',
+                          style: LightAppTextStyles.medium14.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Text(
+                      'Al-Fatiah',
+                      style: LightAppTextStyles.whiteSemiBold18.copyWith(
+                        color: Colors.white,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              AssetsManager.icons.svg.readme.asSvg(
-                                width: 24.aw,
-                                height: 24.ah,
-                              ),
-                              SizedBox(width: 8.aw),
-                              Text(
-                                'Last Read',
-                                style: LightAppTextStyles.medium14.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Text(
-                            'Al-Fatiah',
-                            style: LightAppTextStyles.whiteSemiBold18.copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 4.ah),
-                          Text(
-                            'Ayah : 1-7',
-                            style: LightAppTextStyles.regular14.copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                    4.vsb,
+                    Text(
+                      'Ayah : 1-7',
+                      style: LightAppTextStyles.regular14.copyWith(
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 24.ah),
+              24.vsb,
               const TabbarWidget(),
               const Expanded(
                 child: TabBarView(

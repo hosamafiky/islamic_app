@@ -1,12 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_app/core/errors_exceptions/errors.dart';
-import 'package:islamic_app/core/extensions/either_ext.dart';
 import 'package:islamic_app/features/quran/domain/entities/page.dart';
 import 'package:islamic_app/features/quran/domain/entities/surah.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_juzs_usecase.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_pages_usecase.dart';
-import 'package:islamic_app/features/quran/domain/usecases/get_surah_usecase.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_surahs_usecase.dart';
 
 import '../../domain/entities/juz.dart';
@@ -18,11 +16,9 @@ class QuranCubit extends Cubit<QuranState> {
     required this.getSurahsUsecase,
     required this.getJuzsUsecase,
     required this.getPagesUsecase,
-    required this.getSurahUsecase,
   }) : super(QuranInitial());
 
   final GetSurahsUsecase getSurahsUsecase;
-  final GetSurahUsecase getSurahUsecase;
   final GetJuzsUsecase getJuzsUsecase;
   final GetPagesUsecase getPagesUsecase;
 
@@ -51,10 +47,5 @@ class QuranCubit extends Cubit<QuranState> {
       (error) => emit(PagesError(error: error, surahs: state.surahs, juzs: state.juzs)),
       (pages) => emit(PagesLoaded(surahs: state.surahs, juzs: state.juzs, pages: pages)),
     );
-  }
-
-  Future<Surah?> getSurah(Surah surah) async {
-    final result = await getSurahUsecase(surah);
-    return result.getOrCrash();
   }
 }
