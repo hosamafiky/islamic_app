@@ -4,8 +4,41 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/quran_cubit.dart';
 import 'juz_widget.dart';
 
-class QuranJuzsList extends StatelessWidget {
+class QuranJuzsList extends StatefulWidget {
   const QuranJuzsList({super.key});
+
+  @override
+  State<QuranJuzsList> createState() => _QuranJuzsListState();
+}
+
+class _QuranJuzsListState extends State<QuranJuzsList> {
+  final scrollController = ScrollController();
+
+  void onScroll(int pageNumber, int totalPages) {
+    if (scrollController.position.pixels >= scrollController.position.maxScrollExtent - 20) {
+      if (pageNumber < totalPages) {
+        context.read<QuranCubit>().getJuzs(pageNumber + 1);
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      final state = context.read<QuranCubit>().state;
+      onScroll(state.pagination.currentPage, state.pagination.totalPages);
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(() {
+      final state = context.read<QuranCubit>().state;
+      onScroll(state.pagination.currentPage, state.pagination.totalPages);
+    });
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +60,7 @@ class QuranJuzsList extends StatelessWidget {
           );
         }
         return ListView.separated(
+          controller: scrollController,
           itemBuilder: (context, index) {
             final juz = state.juzs[index];
             return JuzWidget(juz);

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:islamic_app/core/errors_exceptions/errors.dart';
+import 'package:islamic_app/core/models/pagination.dart';
 import 'package:islamic_app/features/quran/data/datasources/quran_local_data_source.dart';
 import 'package:islamic_app/features/quran/data/datasources/quran_remote_data_source.dart';
 import 'package:islamic_app/features/quran/domain/entities/juz.dart';
@@ -22,9 +23,9 @@ class QuranRepositoryImpl implements QuranRepository {
   });
 
   @override
-  Future<Either<AppError, List<Surah>>> getSurahs() async {
+  Future<Either<AppError, (Pagination, List<Surah>)>> getSurahs(int pageNumber) async {
     try {
-      final surahs = await quranLocalDataSource.getSurahs();
+      final surahs = await quranLocalDataSource.getSurahs(pageNumber);
       return Right(surahs);
     } on UnhandledCodeException catch (excep) {
       return Left(UnhandledError(message: excep.message));
@@ -32,9 +33,9 @@ class QuranRepositoryImpl implements QuranRepository {
   }
 
   @override
-  Future<Either<AppError, List<Juz>>> getJuzs() async {
+  Future<Either<AppError, (Pagination, List<Juz>)>> getJuzs(int pageNumber) async {
     try {
-      final juzs = await quranLocalDataSource.getJuzs();
+      final juzs = await quranLocalDataSource.getJuzs(pageNumber);
       return Right(juzs);
     } on UnhandledCodeException catch (excep) {
       return Left(UnhandledError(message: excep.message));
@@ -42,9 +43,9 @@ class QuranRepositoryImpl implements QuranRepository {
   }
 
   @override
-  Future<Either<AppError, List<Page>>> getPages() async {
+  Future<Either<AppError, (Pagination, List<Page>)>> getPages(int pageNumber) async {
     try {
-      final pages = await quranLocalDataSource.getPages();
+      final pages = await quranLocalDataSource.getPages(pageNumber);
       return Right(pages);
     } on UnhandledCodeException catch (excep) {
       return Left(UnhandledError(message: excep.message));

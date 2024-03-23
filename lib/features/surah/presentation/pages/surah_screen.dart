@@ -35,18 +35,57 @@ class SurahScreen extends StatelessWidget {
   }
 }
 
-class SurahScreenBody extends StatelessWidget {
+class SurahScreenBody extends StatefulWidget {
   const SurahScreenBody({super.key, required this.surah});
 
   final Surah surah;
 
   @override
+  State<SurahScreenBody> createState() => _SurahScreenBodyState();
+}
+
+class _SurahScreenBodyState extends State<SurahScreenBody> {
+  final scrollController = ScrollController();
+
+  void scrollListener(int page, int totalPages) {
+    if (scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
+      if (page < totalPages) {
+        context.read<SurahCubit>().getSurah(widget.surah, pageNumber: page + 1);
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      final state = context.read<SurahCubit>().state;
+      if (state is AyahsLoaded) {
+        scrollListener(state.pagination.currentPage, state.pagination.totalPages);
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(() {
+      final state = context.read<SurahCubit>().state;
+      if (state is AyahsLoaded) {
+        scrollListener(state.pagination.currentPage, state.pagination.totalPages);
+      }
+    });
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(surah.title)),
+      appBar: AppBar(title: Text(widget.surah.title)),
       body: CustomScrollView(
+        controller: scrollController,
         slivers: [
-          SurahCardWidget(surah),
+          SurahCardWidget(widget.surah),
           SliverToBoxAdapter(child: 16.vsb),
           SliverToBoxAdapter(
             child: BlocBuilder<SurahCubit, SurahState>(
@@ -54,7 +93,9 @@ class SurahScreenBody extends StatelessWidget {
               builder: (context, state) {
                 if (state is AyahsLoaded) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.aw),
+                    padding: EdgeInsets.symmetric(horizontal: 24.aw).copyWith(
+                      bottom: 24.ah + MediaQuery.viewPaddingOf(context).bottom,
+                    ),
                     child: SpacedColumn.withSpacing(
                       spacing: 24.ah,
                       children: state.ayahs.map((ayah) => AyahWidget(ayah)).toList(),
@@ -140,7 +181,7 @@ class AyahWidget extends StatelessWidget {
           child: Text(
             ayah.text,
             textAlign: TextAlign.end,
-            style: LightAppTextStyles.amiriBold18,
+            style: LightAppTextStyles.amiriBold18.copyWith(height: 2.1),
           ),
         ),
       ],
