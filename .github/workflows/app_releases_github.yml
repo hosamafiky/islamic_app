@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - main
+      - deployment
 
 env:
   JAVA_VERSION: "17.0.9"

@@ -3,7 +3,7 @@ name: FIREBASE_APP_DISTRIBUTION
 on:
   push:
     branches:
-      - main
+      - deployment
 
 jobs:
   distribute_to_firebase:
