@@ -6,6 +6,7 @@ class DarkAppColors {
   static const accent = Color(0xFF4A4A4A);
   static const background = Color(0xFF121212);
   static const surface = Color(0xFF333333);
+  static const card = Color(0xFF121931);
   static const error = Color(0xFFCF6679);
   static const iconColor = Color(0xFFA19CC5);
   static const onSecondary = Color(0xFFFFFFFF);

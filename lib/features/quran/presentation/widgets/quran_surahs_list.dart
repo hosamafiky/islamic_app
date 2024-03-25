@@ -56,14 +56,11 @@ class _QuranSurahsListState extends State<QuranSurahsList> {
             child: Text(state.error!.message),
           );
         }
-        return Scrollbar(
+        return ListView.separated(
           controller: scrollController,
-          child: ListView.separated(
-            controller: scrollController,
-            itemBuilder: (context, index) => SurahHorizWidget(state.surahs[index]),
-            separatorBuilder: (context, index) => const Divider(indent: 20, endIndent: 20),
-            itemCount: state.surahs.length,
-          ),
+          itemBuilder: (context, index) => SurahHorizWidget(state.surahs[index]),
+          separatorBuilder: (context, index) => const Divider(indent: 20, endIndent: 20),
+          itemCount: state.surahs.length,
         );
       },
     );

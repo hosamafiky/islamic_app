@@ -5,10 +5,11 @@ import 'package:islamic_app/core/extensions/sizing_ext.dart';
 import 'package:islamic_app/core/extensions/svg_extension.dart';
 import 'package:islamic_app/core/helpers/firebase_messaging_helper.dart';
 import 'package:islamic_app/core/resources/assets_manager.dart';
-import 'package:islamic_app/core/utils/app_text_styles.dart';
+import 'package:islamic_app/features/home/presentation/widgets/last_read_widget.dart';
 import 'package:islamic_app/features/home/presentation/widgets/tabbar_widget.dart';
 import 'package:islamic_app/features/quran/presentation/widgets/quran_juzs_list.dart';
 import 'package:islamic_app/features/quran/presentation/widgets/quran_pages_list.dart';
+import 'package:islamic_app/features/theme/presentation/widgets/change_theme_mode_button.dart';
 import 'package:islamic_app/firebase_options.dart';
 
 import '../../../quran/presentation/widgets/quran_surahs_list.dart';
@@ -49,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: AssetsManager.icons.svg.menu.asSvg(width: 24.aw, height: 24.aw),
             onPressed: () {},
           ),
+          actions: const [ChangeThemeModeButton()],
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.aw),
@@ -57,59 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 'Asslamualaikum',
-                style: LightAppTextStyles.medium18,
+                style: Theme.of(context).textTheme.displayMedium,
               ),
               Text(
                 'Brother',
-                style: LightAppTextStyles.semiBold24,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               24.vsb,
-              Container(
-                height: 131.ah,
-                padding: const EdgeInsets.all(20),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(AssetsManager.images.lastRead),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        AssetsManager.icons.svg.readme.asSvg(
-                          width: 24.aw,
-                          height: 24.ah,
-                        ),
-                        SizedBox(width: 8.aw),
-                        Text(
-                          'Last Read',
-                          style: LightAppTextStyles.medium14.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      'Al-Fatiah',
-                      style: LightAppTextStyles.whiteSemiBold18.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                    4.vsb,
-                    Text(
-                      'Ayah : 1-7',
-                      style: LightAppTextStyles.regular14.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const LastReadWidget(),
               24.vsb,
               const TabbarWidget(),
               const Expanded(

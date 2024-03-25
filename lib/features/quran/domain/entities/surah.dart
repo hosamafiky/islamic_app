@@ -176,13 +176,29 @@ class VerseRange {
 class Verse {
   final int number;
   final String key;
+  final String audioUrl;
   final String text;
 
   const Verse({
     required this.number,
     required this.key,
+    required this.audioUrl,
     required this.text,
   });
+
+  Verse copyWith({
+    int? number,
+    String? key,
+    String? audioUrl,
+    String? text,
+  }) {
+    return Verse(
+      number: number ?? this.number,
+      key: key ?? this.key,
+      audioUrl: audioUrl ?? this.audioUrl,
+      text: text ?? this.text,
+    );
+  }
 
   Map<String, dynamic> toEntry() => {key: text};
 

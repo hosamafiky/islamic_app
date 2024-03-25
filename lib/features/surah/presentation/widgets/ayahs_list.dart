@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:islamic_app/core/errors_exceptions/errors.dart';
 import 'package:islamic_app/core/extensions/sizing_ext.dart';
 import 'package:islamic_app/core/extensions/spaced_column.dart';
 import 'package:islamic_app/core/themes/data/themes.dart';
@@ -32,7 +33,7 @@ class AyahsList extends StatelessWidget {
           } else if (state is AyahsError) {
             return Center(
               child: Text(
-                state.error!.message,
+                state.error is UnhandledError ? 'Something went wrong' : state.error!.message,
                 style: LightAppTextStyles.medium14.copyWith(
                   color: LightAppColors.errorColor,
                 ),

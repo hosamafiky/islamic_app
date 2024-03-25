@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_app/core/utils/app_text_styles.dart';
 import 'package:islamic_app/features/surah/presentation/pages/surah_screen.dart';
 
 import '../../../../core/resources/assets_manager.dart';
@@ -14,7 +13,6 @@ class SurahHorizWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () => Navigator.pushNamed(context, SurahScreen.routeName, arguments: surah),
-      visualDensity: VisualDensity.compact,
       leading: Container(
         width: 36,
         height: 36,
@@ -27,22 +25,13 @@ class SurahHorizWidget extends StatelessWidget {
         child: Center(
           child: Text(
             int.parse(surah.index).toString(),
-            style: LightAppTextStyles.medium14,
+            style: Theme.of(context).listTileTheme.titleTextStyle!.copyWith(fontSize: 14),
           ),
         ),
       ),
-      title: Text(
-        surah.title,
-        style: LightAppTextStyles.medium16,
-      ),
-      subtitle: Text(
-        '${surah.type} - ${surah.count} verses'.toUpperCase(),
-        style: LightAppTextStyles.medium12,
-      ),
-      trailing: Text(
-        surah.titleAr.split(' ').last,
-        style: LightAppTextStyles.amiriBold20,
-      ),
+      title: Text(surah.title),
+      subtitle: Text('${surah.type} - ${surah.count} verses'.toUpperCase()),
+      trailing: Text(surah.titleAr.split(' ').last),
     );
   }
 }

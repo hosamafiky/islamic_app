@@ -20,6 +20,7 @@ class SurahLocalDatasourceImpl implements SurahLocalDatasource {
       final number = int.parse(surah.index);
       final surahDetails = await rootBundle.loadString('assets/quran/surahs/surah_$number.json');
       final data = json.decode(surahDetails)['verse'].entries.toList();
+      data.removeWhere((element) => element.key == "verse_0");
       List<MapEntry<String, dynamic>> getPaginatedData(int currentPage) {
         int startIndex = (currentPage - 1) * pageSize;
         int endIndex = min(currentPage * pageSize, data.length);

@@ -27,4 +27,5 @@ class AssetSvgs {
   String get bookmark => '${_path}bookmark.svg';
   String get play => '${_path}play.svg';
   String get share => '${_path}share.svg';
+  String get pause => '${_path}pause.svg';
 }
