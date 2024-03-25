@@ -84,13 +84,15 @@ class VerseModel extends Verse {
   const VerseModel({
     required super.number,
     required super.key,
+    required super.audioUrl,
     required super.text,
   });
 
   factory VerseModel.fromEntry(MapEntry<String, dynamic> entry) {
     return VerseModel(
-      number: int.parse(entry.key.split('_').last) + 1,
+      number: int.parse(entry.key.split('_').last),
       key: entry.key,
+      audioUrl: '',
       text: entry.value,
     );
   }

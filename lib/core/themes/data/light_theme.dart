@@ -19,6 +19,7 @@ class LightTheme {
             color: LightAppColors.iconColor,
           ),
         ),
+        cardColor: LightAppColors.cardColor,
         tabBarTheme: TabBarTheme(
           labelColor: LightAppColors.primaryColor,
           unselectedLabelColor: LightAppColors.unselectedLabelColor,
@@ -34,6 +35,24 @@ class LightTheme {
         primaryColorDark: LightAppColors.primaryColorDark,
         dividerTheme: DividerThemeData(
           color: LightAppColors.dividerColor.withOpacity(0.35),
+        ),
+        textTheme: TextTheme(
+          displayMedium: LightAppTextStyles.medium18,
+          headlineMedium: LightAppTextStyles.semiBold24,
+          titleMedium: LightAppTextStyles.medium14.copyWith(color: Colors.white),
+          titleLarge: LightAppTextStyles.whiteSemiBold18.copyWith(color: Colors.white),
+          titleSmall: LightAppTextStyles.regular14.copyWith(color: Colors.white),
+          bodyMedium: LightAppTextStyles.amiriBold18,
+        ),
+        listTileTheme: ListTileThemeData(
+          visualDensity: VisualDensity.compact,
+          tileColor: LightAppColors.scaffoldBackgroundColor,
+          titleTextStyle: LightAppTextStyles.medium16,
+          subtitleTextStyle: LightAppTextStyles.medium12,
+          leadingAndTrailingTextStyle: LightAppTextStyles.amiriBold20,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       );
 }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_app/core/extensions/sizing_ext.dart';
+import 'package:islamic_app/core/helpers/dio_helper.dart';
 import 'package:islamic_app/features/surah/data/datasources/surah_local_data_source.dart';
+import 'package:islamic_app/features/surah/data/datasources/surah_remote_data_source.dart';
 import 'package:islamic_app/features/surah/data/repositories/surah_repository_impl.dart';
 import 'package:islamic_app/features/surah/domain/usecases/get_surah_usecase.dart';
 import 'package:islamic_app/features/surah/presentation/cubit/surah_cubit.dart';
 
 import '../../../quran/domain/entities/surah.dart';
+import '../../domain/usecases/get_ayah_audio_usecase.dart';
 import '../widgets/ayahs_list.dart';
 import '../widgets/surah_card_widget.dart';
 
@@ -22,6 +25,13 @@ class SurahScreen extends StatelessWidget {
       create: (context) => SurahCubit(
         getSurahUsecase: GetSurahUsecase(
           SurahRepositoryImpl(
+            surahRemoteDatasource: SurahRemoteDatasourceImpl(dioHelper: DioHelper()),
+            surahLocalDatasource: SurahLocalDatasourceImpl(),
+          ),
+        ),
+        getAyahAudioUsecase: GetAyahAudioUsecase(
+          SurahRepositoryImpl(
+            surahRemoteDatasource: SurahRemoteDatasourceImpl(dioHelper: DioHelper()),
             surahLocalDatasource: SurahLocalDatasourceImpl(),
           ),
         ),

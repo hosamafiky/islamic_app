@@ -9,6 +9,7 @@ import 'package:islamic_app/features/quran/data/repositories/quran_repository_im
 import 'package:islamic_app/features/quran/domain/usecases/get_juzs_usecase.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_surahs_usecase.dart';
 import 'package:islamic_app/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:islamic_app/features/theme/presentation/cubit/theme_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/globals/global_keys.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(
           create: (context) => QuranCubit(
             getPagesUsecase: GetPagesUsecase(
@@ -85,17 +87,21 @@ class MyApp extends StatelessWidget {
             ..getPages(),
         ),
       ],
-      child: ResponsiveSizer(
-        builder: (context, orientation, deviceType) {
-          return MaterialApp(
-            scaffoldMessengerKey: snackbarKey,
-            navigatorKey: navigatorKey,
-            title: 'Islamic App',
-            debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.dark,
-            theme: Themes.light,
-            darkTheme: Themes.dark,
-            onGenerateRoute: AppRouter.onGenerateRoute,
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return ResponsiveSizer(
+            builder: (context, orientation, deviceType) {
+              return MaterialApp(
+                scaffoldMessengerKey: snackbarKey,
+                navigatorKey: navigatorKey,
+                title: 'Islamic App',
+                debugShowCheckedModeBanner: false,
+                themeMode: state.themeMode,
+                theme: Themes.light,
+                darkTheme: Themes.dark,
+                onGenerateRoute: AppRouter.onGenerateRoute,
+              );
+            },
           );
         },
       ),

@@ -20,7 +20,7 @@ class LightAppColors {
   static const disabledColor = Color(0xFFBDBDBD);
   static const iconColor = Color(0xFF8789A3);
   static const shadowColor = Color(0x44000000);
-  static const cardColor = Color(0xFFFFFFFF);
+  static const cardColor = Color(0x0D121931);
   static const cardColorDark = Color(0xFF000000);
   static const cardColorLight = Color(0xFFFFFFFF);
   static const buttonColor = Color(0xFF3F51B5);
