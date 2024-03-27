@@ -2,12 +2,12 @@ part of 'surah_cubit.dart';
 
 abstract class SurahState extends Equatable {
   const SurahState({
-    this.ayahs = const <Verse>[],
+    this.ayahs = const <Ayah>[],
     this.pagination = const Pagination(),
     this.error,
   });
 
-  final List<Verse> ayahs;
+  final List<Ayah> ayahs;
   final Pagination pagination;
   final AppError? error;
 
@@ -21,7 +21,7 @@ class SurahInitial extends SurahState {
 
 class AyahsLoaded extends SurahState {
   const AyahsLoaded({
-    required List<Verse> ayahs,
+    required List<Ayah> ayahs,
     required Pagination pagination,
   }) : super(ayahs: ayahs, pagination: pagination);
 }

@@ -1,14 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_app/core/extensions/sizing_ext.dart';
 import 'package:islamic_app/core/helpers/dio_helper.dart';
+import 'package:islamic_app/features/reader/data/datasources/reader_local_datasource.dart';
+import 'package:islamic_app/features/reader/data/repositories/readers_repository_impl.dart';
+import 'package:islamic_app/features/reader/domain/usecases/get_readers_usecase.dart';
+import 'package:islamic_app/features/reader/presentation/cubit/reader_cubit.dart';
 import 'package:islamic_app/features/surah/data/datasources/surah_local_data_source.dart';
 import 'package:islamic_app/features/surah/data/datasources/surah_remote_data_source.dart';
 import 'package:islamic_app/features/surah/data/repositories/surah_repository_impl.dart';
-import 'package:islamic_app/features/surah/domain/usecases/get_surah_usecase.dart';
 import 'package:islamic_app/features/surah/presentation/cubit/surah_cubit.dart';
 
-import '../../../quran/domain/entities/surah.dart';
+import '../../domain/entities/ayah.dart';
+import '../../domain/entities/surah.dart';
 import '../../domain/usecases/get_ayah_audio_usecase.dart';
 import '../widgets/ayahs_list.dart';
 import '../widgets/surah_card_widget.dart';
@@ -21,21 +27,26 @@ class SurahScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SurahCubit(
-        getSurahUsecase: GetSurahUsecase(
-          SurahRepositoryImpl(
-            surahRemoteDatasource: SurahRemoteDatasourceImpl(dioHelper: DioHelper()),
-            surahLocalDatasource: SurahLocalDatasourceImpl(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SurahCubit(
+            getAyahAudioUsecase: GetAyahAudioUsecase(
+              SurahRepositoryImpl(
+                surahRemoteDatasource: SurahRemoteDatasourceImpl(dioHelper: DioHelper()),
+                surahLocalDatasource: SurahLocalDatasourceImpl(),
+              ),
+            ),
           ),
         ),
-        getAyahAudioUsecase: GetAyahAudioUsecase(
-          SurahRepositoryImpl(
-            surahRemoteDatasource: SurahRemoteDatasourceImpl(dioHelper: DioHelper()),
-            surahLocalDatasource: SurahLocalDatasourceImpl(),
-          ),
+        BlocProvider(
+          create: (context) => ReaderCubit(
+            getReadersUsecase: GetReadersUsecase(
+              ReadersRepositoryImpl(ReaderLocalDatasourceImpl()),
+            ),
+          )..getReaders(),
         ),
-      )..getSurah(surah),
+      ],
       child: SurahScreenBody(surah: surah),
     );
   }
@@ -52,22 +63,22 @@ class SurahScreenBody extends StatefulWidget {
 
 class _SurahScreenBodyState extends State<SurahScreenBody> {
   final scrollController = ScrollController();
+  int pageNumber = 1;
+  ValueNotifier<List<Ayah>> ayahs = ValueNotifier([]);
 
   void scrollListener(int page, int totalPages) {
     if (scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
       if (page < totalPages) {
-        context.read<SurahCubit>().getSurah(widget.surah, pageNumber: page + 1);
+        ayahs.value = [...ayahs.value, ...getAyahs(page + 1)];
       }
     }
   }
 
   @override
   void initState() {
+    ayahs.value = getAyahs(1);
     scrollController.addListener(() {
-      final state = context.read<SurahCubit>().state;
-      if (state is AyahsLoaded) {
-        scrollListener(state.pagination.currentPage, state.pagination.totalPages);
-      }
+      scrollListener(pageNumber, widget.surah.ayahs.length ~/ 10);
     });
     super.initState();
   }
@@ -75,10 +86,7 @@ class _SurahScreenBodyState extends State<SurahScreenBody> {
   @override
   void dispose() {
     scrollController.removeListener(() {
-      final state = context.read<SurahCubit>().state;
-      if (state is AyahsLoaded) {
-        scrollListener(state.pagination.currentPage, state.pagination.totalPages);
-      }
+      scrollListener(pageNumber, widget.surah.ayahs.length ~/ 10);
     });
     scrollController.dispose();
     super.dispose();
@@ -87,15 +95,37 @@ class _SurahScreenBodyState extends State<SurahScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.surah.title)),
+      appBar: AppBar(
+        title: Text(widget.surah.englishName),
+        // actions: [
+        //   ReadersDropdownWidget(
+        //     onReaderSelected: (reader) {},
+        //   )
+        // ],
+      ),
       body: CustomScrollView(
         controller: scrollController,
         slivers: [
           SurahCardWidget(widget.surah),
           SliverToBoxAdapter(child: 16.vsb),
-          const AyahsList(),
+          SliverToBoxAdapter(
+            child: ValueListenableBuilder(
+              valueListenable: ayahs,
+              builder: (BuildContext context, List<Ayah> ayahsList, Widget? child) {
+                return AyahsList(ayahsList);
+              },
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  List<Ayah> getAyahs(int pageNumber, {int pageSize = 10}) {
+    this.pageNumber = pageNumber;
+    final data = widget.surah.ayahs;
+    final start = (pageNumber - 1) * pageSize;
+    final end = min(pageNumber * pageSize, data.length);
+    return data.sublist(start, end);
   }
 }

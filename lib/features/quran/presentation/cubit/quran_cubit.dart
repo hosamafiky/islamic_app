@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_app/core/errors_exceptions/errors.dart';
 import 'package:islamic_app/core/models/pagination.dart';
 import 'package:islamic_app/features/quran/domain/entities/page.dart';
-import 'package:islamic_app/features/quran/domain/entities/surah.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_juzs_usecase.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_pages_usecase.dart';
 import 'package:islamic_app/features/quran/domain/usecases/get_surahs_usecase.dart';
+import 'package:islamic_app/features/surah/domain/entities/surah.dart';
 
 import '../../domain/entities/juz.dart';
 

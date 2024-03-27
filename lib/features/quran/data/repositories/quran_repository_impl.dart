@@ -6,7 +6,7 @@ import 'package:islamic_app/features/quran/data/datasources/quran_local_data_sou
 import 'package:islamic_app/features/quran/data/datasources/quran_remote_data_source.dart';
 import 'package:islamic_app/features/quran/domain/entities/juz.dart';
 import 'package:islamic_app/features/quran/domain/entities/page.dart';
-import 'package:islamic_app/features/quran/domain/entities/surah.dart';
+import 'package:islamic_app/features/surah/domain/entities/surah.dart';
 
 import '../../../../core/errors_exceptions/exceptions.dart';
 import '../../domain/repositories/quran_repository.dart';

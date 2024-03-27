@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:islamic_app/core/errors_exceptions/exceptions.dart';
 import 'package:islamic_app/core/helpers/dio_helper.dart';
 import 'package:islamic_app/features/quran/data/models/juz_model.dart';
-import 'package:islamic_app/features/quran/data/models/surah_model.dart';
+import 'package:islamic_app/features/surah/data/models/surah_model.dart';
 
 abstract class QuranRemoteDatasource {
   Future<List<SurahModel>> getSurahs();
