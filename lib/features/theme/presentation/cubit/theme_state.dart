@@ -2,7 +2,7 @@ part of 'theme_cubit.dart';
 
 abstract class ThemeState extends Equatable {
   const ThemeState({
-    this.themeMode = ThemeMode.system,
+    this.themeMode = ThemeMode.light,
   });
 
   final ThemeMode themeMode;

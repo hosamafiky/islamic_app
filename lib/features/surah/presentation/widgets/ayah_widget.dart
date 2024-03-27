@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/core/extensions/sizing_ext.dart';
-import 'package:islamic_app/features/quran/domain/entities/surah.dart';
+import 'package:islamic_app/features/surah/domain/entities/ayah.dart';
 
 import 'ayah_actions_widget.dart';
 
 class AyahWidget extends StatelessWidget {
   const AyahWidget(this.ayah, {super.key});
 
-  final Verse ayah;
+  final Ayah ayah;
 
   @override
   Widget build(BuildContext context) {

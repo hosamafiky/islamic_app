@@ -7,9 +7,9 @@ import 'package:islamic_app/core/helpers/cache_helper.dart';
 import 'package:islamic_app/core/models/pagination.dart';
 import 'package:islamic_app/features/quran/domain/entities/page.dart';
 
+import '../../../surah/data/models/surah_model.dart';
 import '../models/juz_model.dart';
 import '../models/page_model.dart';
-import '../models/surah_model.dart';
 
 abstract class QuranLocalDatasource {
   Future<(Pagination, List<SurahModel>)> getSurahs(int pageNumber);
@@ -24,24 +24,25 @@ class QuranLocalDatasourceImpl implements QuranLocalDatasource {
 
   @override
   Future<(Pagination, List<SurahModel>)> getSurahs(int pageNumber) async {
-    try {
-      const pageSize = 10;
-      final surahs = await rootBundle.loadString('assets/quran/surah.json');
-      final List<Map<String, dynamic>> surahsList = List<Map<String, dynamic>>.from(json.decode(surahs));
-      List<Map<String, dynamic>> getPaginatedData() {
-        int startIndex = (pageNumber - 1) * pageSize;
-        int endIndex = min(pageNumber * pageSize, surahsList.length);
-        if (startIndex >= surahsList.length) return surahsList;
-        return surahsList.sublist(startIndex, endIndex);
-      }
-
-      final pagination = Pagination(currentPage: pageNumber, pageSize: pageSize, totalPages: (surahsList.length / pageSize).ceil());
-      final surahsModels = getPaginatedData().map((e) => SurahModel.fromMap(e)).toList();
-
-      return (pagination, surahsModels);
-    } catch (e) {
-      throw UnhandledCodeException(message: e.toString());
+    // try {
+    const pageSize = 10;
+    final surahs = await rootBundle.loadString('assets/quran/quranV2.json');
+    final List<Map<String, dynamic>> surahsList = List<Map<String, dynamic>>.from(json.decode(surahs));
+    List<Map<String, dynamic>> getPaginatedData() {
+      int startIndex = (pageNumber - 1) * pageSize;
+      int endIndex = min(pageNumber * pageSize, surahsList.length);
+      if (startIndex >= surahsList.length) return surahsList;
+      return surahsList.sublist(startIndex, endIndex);
     }
+
+    final pagination = Pagination(currentPage: pageNumber, pageSize: pageSize, totalPages: (surahsList.length / pageSize).ceil());
+    final surahsModels = getPaginatedData().map((e) => SurahModel.fromMap(e)).toList();
+
+    return (pagination, surahsModels);
+    // } catch (e) {
+
+    //   // throw UnhandledCodeException(message: e.toString());
+    // }
   }
 
   @override

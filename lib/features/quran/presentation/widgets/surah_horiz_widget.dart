@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islamic_app/features/surah/presentation/pages/surah_screen.dart';
 
 import '../../../../core/resources/assets_manager.dart';
-import '../../domain/entities/surah.dart';
+import '../../../surah/domain/entities/surah.dart';
 
 class SurahHorizWidget extends StatelessWidget {
   const SurahHorizWidget(this.surah, {super.key});
@@ -24,14 +24,14 @@ class SurahHorizWidget extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            int.parse(surah.index).toString(),
+            surah.number.toString(),
             style: Theme.of(context).listTileTheme.titleTextStyle!.copyWith(fontSize: 14),
           ),
         ),
       ),
-      title: Text(surah.title),
-      subtitle: Text('${surah.type} - ${surah.count} verses'.toUpperCase()),
-      trailing: Text(surah.titleAr.split(' ').last),
+      title: Text(surah.englishName),
+      subtitle: Text('${surah.revelationType} - ${surah.ayahs.length} verses'.toUpperCase()),
+      trailing: Text(surah.name.split(' ').last),
     );
   }
 }

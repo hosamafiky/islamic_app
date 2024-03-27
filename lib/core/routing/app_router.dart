@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/features/home/presentation/pages/home_screen.dart';
-import 'package:islamic_app/features/quran/domain/entities/surah.dart';
+import 'package:islamic_app/features/surah/domain/entities/surah.dart';
 import 'package:islamic_app/features/surah/presentation/pages/surah_screen.dart';
 
 class AppRouter {

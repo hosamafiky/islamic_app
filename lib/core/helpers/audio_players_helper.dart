@@ -1,14 +1,17 @@
-import 'package:just_audio/just_audio.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class AudioPlayerHelper {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
-  Future<Duration?> setSource(String url) async {
-    return await _audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(url)));
+  late String url;
+
+  Future<void> setSource(String url) async {
+    this.url = url;
+    return await _audioPlayer.setSource(UrlSource(url));
   }
 
   Future<void> play() async {
-    return await _audioPlayer.play();
+    return await _audioPlayer.play(_audioPlayer.source ?? UrlSource(url));
   }
 
   Future<void> pause() async {
@@ -16,6 +19,7 @@ class AudioPlayerHelper {
   }
 
   Future<void> stop() async {
+    _audioPlayer.release();
     return await _audioPlayer.stop();
   }
 
@@ -23,11 +27,11 @@ class AudioPlayerHelper {
     return await _audioPlayer.seek(position);
   }
 
-  Stream<Duration> get positionStream => _audioPlayer.positionStream;
-  Stream<Duration?> get durationStream => _audioPlayer.durationStream;
-  Stream<bool> get stateStream => _audioPlayer.playingStream;
+  Stream<Duration> get positionStream => _audioPlayer.onPositionChanged;
+  Stream<Duration> get durationStream => _audioPlayer.onDurationChanged;
+  Stream<PlayerState> get stateStream => _audioPlayer.onPlayerStateChanged;
 
   Future<void> dispose() async {
-    return await _audioPlayer.dispose();
+    return await _audioPlayer.release();
   }
 }

@@ -4,7 +4,7 @@ import 'package:islamic_app/core/resources/assets_manager.dart';
 import 'package:islamic_app/core/themes/data/themes.dart';
 import 'package:islamic_app/core/utils/app_text_styles.dart';
 
-import '../../../quran/domain/entities/surah.dart';
+import '../../domain/entities/surah.dart';
 
 class SurahCardWidget extends StatelessWidget {
   const SurahCardWidget(this.surah, {super.key});
@@ -35,10 +35,10 @@ class SurahCardWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Text(surah.title, style: LightAppTextStyles.medium26),
+            Text(surah.englishName, style: LightAppTextStyles.medium26),
             4.vsb,
             Text(
-              surah.titleEn,
+              surah.englishNameTranslation,
               style: LightAppTextStyles.medium16.copyWith(
                 color: Colors.white,
               ),
@@ -48,7 +48,7 @@ class SurahCardWidget extends StatelessWidget {
               color: Colors.white.withOpacity(0.35),
             ),
             Text(
-              '${surah.type} . ${surah.count} Verses'.toUpperCase(),
+              '${surah.revelationType} . ${surah.ayahs.length} Verses'.toUpperCase(),
               style: LightAppTextStyles.medium16.copyWith(
                 color: Colors.white,
               ),
