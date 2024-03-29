@@ -18,7 +18,10 @@ class ReaderCubit extends Cubit<ReaderState> {
     final readers = await getReadersUsecase();
     readers.fold(
       (error) => emit(ReadersError(error: error)),
-      (readers) => emit(ReadersLoaded(readers: readers)),
+      (readers) => emit(ReadersLoaded(
+        readers: readers,
+        selectedReader: readers.firstWhere((element) => element.identifier == "ar.alafasy"),
+      )),
     );
   }
 

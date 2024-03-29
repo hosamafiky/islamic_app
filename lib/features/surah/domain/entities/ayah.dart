@@ -3,9 +3,10 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Ayah extends Equatable {
   final int number;
-  final String audio;
+  String audio;
   final List<String> audioSecondary;
   final String text;
   final String ayaTextEmlaey;
@@ -19,7 +20,7 @@ class Ayah extends Equatable {
   final dynamic sajda;
   final String codeV2;
 
-  const Ayah({
+  Ayah({
     required this.number,
     required this.audio,
     required this.audioSecondary,
