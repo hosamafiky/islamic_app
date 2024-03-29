@@ -13,6 +13,7 @@ import 'package:islamic_app/features/surah/data/datasources/surah_remote_data_so
 import 'package:islamic_app/features/surah/data/repositories/surah_repository_impl.dart';
 import 'package:islamic_app/features/surah/presentation/cubit/surah_cubit.dart';
 
+import '../../../reader/presentation/widgets/readers_dropdown.dart';
 import '../../domain/entities/ayah.dart';
 import '../../domain/entities/surah.dart';
 import '../../domain/usecases/get_ayah_audio_usecase.dart';
@@ -97,11 +98,11 @@ class _SurahScreenBodyState extends State<SurahScreenBody> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.surah.englishName),
-        // actions: [
-        //   ReadersDropdownWidget(
-        //     onReaderSelected: (reader) {},
-        //   )
-        // ],
+        actions: [
+          ReadersDropdownWidget(
+            onReaderSelected: (reader) {},
+          )
+        ],
       ),
       body: CustomScrollView(
         controller: scrollController,
@@ -111,7 +112,7 @@ class _SurahScreenBodyState extends State<SurahScreenBody> {
           SliverToBoxAdapter(
             child: ValueListenableBuilder(
               valueListenable: ayahs,
-              builder: (BuildContext context, List<Ayah> ayahsList, Widget? child) {
+              builder: (context, List<Ayah> ayahsList, child) {
                 return AyahsList(ayahsList);
               },
             ),

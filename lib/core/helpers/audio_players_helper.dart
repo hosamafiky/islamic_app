@@ -19,8 +19,15 @@ class AudioPlayerHelper {
   }
 
   Future<void> stop() async {
-    _audioPlayer.release();
     return await _audioPlayer.stop();
+  }
+
+  Future<void> release() async {
+    return await _audioPlayer.release();
+  }
+
+  Future<void> resume() async {
+    return await _audioPlayer.resume();
   }
 
   Future<void> seek(Duration position) async {
@@ -30,6 +37,8 @@ class AudioPlayerHelper {
   Stream<Duration> get positionStream => _audioPlayer.onPositionChanged;
   Stream<Duration> get durationStream => _audioPlayer.onDurationChanged;
   Stream<PlayerState> get stateStream => _audioPlayer.onPlayerStateChanged;
+  PlayerState get state => _audioPlayer.state;
+  Future<Duration?> get duration => _audioPlayer.getDuration();
 
   Future<void> dispose() async {
     return await _audioPlayer.release();

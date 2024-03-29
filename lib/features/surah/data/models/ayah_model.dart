@@ -1,9 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:convert';
 
 import 'package:islamic_app/features/surah/domain/entities/ayah.dart';
 
 class AyahModel extends Ayah {
-  const AyahModel({
+  AyahModel({
     required super.number,
     required super.audio,
     required super.audioSecondary,
