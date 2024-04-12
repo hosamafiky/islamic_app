@@ -24,5 +24,8 @@ class Reader extends Equatable {
   String toJson() => json.encode(toMap());
 
   @override
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [identifier, name, englishName];
 }

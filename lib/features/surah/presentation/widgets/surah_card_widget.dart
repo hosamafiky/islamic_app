@@ -47,10 +47,28 @@ class SurahCardWidget extends StatelessWidget {
               height: 32.ah,
               color: Colors.white.withOpacity(0.35),
             ),
-            Text(
-              '${surah.revelationType} . ${surah.ayahs.length} Verses'.toUpperCase(),
-              style: LightAppTextStyles.medium16.copyWith(
-                color: Colors.white,
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: surah.revelationType.toUpperCase(),
+                    style: LightAppTextStyles.medium16.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                  WidgetSpan(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0).copyWith(bottom: 4),
+                      child: const CircleAvatar(radius: 3, backgroundColor: Colors.white),
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${surah.ayahs.length} Ayahs',
+                    style: LightAppTextStyles.medium16.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
             const Spacer(),

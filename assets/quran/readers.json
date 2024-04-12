@@ -1,25 +1,5 @@
 [
   {
-    "identifier": "ar.abdulbasitmurattal",
-    "name": "عبد الباسط عبد الصمد المرتل",
-    "englishName": "Abdul Basit"
-  },
-  {
-    "identifier": "ar.abdullahbasfar",
-    "name": "عبد الله بصفر",
-    "englishName": "Abdullah Basfar"
-  },
-  {
-    "identifier": "ar.abdurrahmaansudais",
-    "name": "عبدالرحمن السديس",
-    "englishName": "Abdurrahmaan As-Sudais"
-  },
-  {
-    "identifier": "ar.abdulsamad",
-    "name": "عبدالباسط عبدالصمد",
-    "englishName": "Abdul Samad"
-  },
-  {
     "identifier": "ar.shaatree",
     "name": "أبو بكر الشاطري",
     "englishName": "Abu Bakr Ash-Shaatree"
@@ -33,11 +13,6 @@
     "identifier": "ar.alafasy",
     "name": "مشاري العفاسي",
     "englishName": "Alafasy"
-  },
-  {
-    "identifier": "ar.hanirifai",
-    "name": "هاني الرفاعي",
-    "englishName": "Hani Rifai"
   },
   {
     "identifier": "ar.husary",
@@ -54,11 +29,7 @@
     "name": "علي بن عبدالرحمن الحذيفي",
     "englishName": "Hudhaify"
   },
-  {
-    "identifier": "ar.ibrahimakhbar",
-    "name": "إبراهيم الأخضر",
-    "englishName": "Ibrahim Akhdar"
-  },
+
   {
     "identifier": "ar.mahermuaiqly",
     "name": "ماهر المعيقلي",
@@ -69,11 +40,7 @@
     "name": "محمد صديق المنشاوي",
     "englishName": "Minshawi"
   },
-  {
-    "identifier": "ar.minshawimujawwad",
-    "name": "محمد صديق المنشاوي (المجود)",
-    "englishName": "Minshawy (Mujawwad)"
-  },
+
   {
     "identifier": "ar.muhammadayyoub",
     "name": "محمد أيوب",
@@ -83,20 +50,5 @@
     "identifier": "ar.muhammadjibreel",
     "name": "محمد جبريل",
     "englishName": "Muhammad Jibreel"
-  },
-  {
-    "identifier": "ar.saoodshuraym",
-    "name": "سعود الشريم",
-    "englishName": "Saood bin Ibraaheem Ash-Shuraym"
-  },
-  {
-    "identifier": "ar.parhizgar",
-    "name": "شهریار پرهیزگار",
-    "englishName": "Parhizgar"
-  },
-  {
-    "identifier": "ar.aymanswoaid",
-    "name": "أيمن سويد",
-    "englishName": "Ayman Sowaid"
   }
 ]
