@@ -7,7 +7,7 @@ on:
 
 env:
   JAVA_VERSION: "17.0.9"
-  FLUTTER_VERSION: "3.16.7"
+  FLUTTER_VERSION: "3.19.4"
   FLUTTER_CHANNEL: "stable"
   # PROPERTIES_PATH: "./android/key.properties"
 
