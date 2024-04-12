@@ -37,6 +37,13 @@ class Ayah extends Equatable {
     required this.codeV2,
   });
 
+  void updateAudioReader(String reader) {
+    final segments = audio.split("/");
+    segments[segments.length - 2] = reader;
+
+    audio = segments.join("/");
+  }
+
   Map<String, dynamic> toMap() => {
         "number": number,
         "audio": audio,

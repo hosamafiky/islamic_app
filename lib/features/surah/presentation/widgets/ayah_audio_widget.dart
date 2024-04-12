@@ -27,7 +27,7 @@ class AyahAudioWidget extends StatelessWidget {
                   audioPlayerHelper.pause();
                   return;
                 } else {
-                  audioPlayerHelper.play();
+                  audioPlayerHelper.setSource(url).whenComplete(() async => await audioPlayerHelper.play(url));
                 }
               },
               child: isPlaying

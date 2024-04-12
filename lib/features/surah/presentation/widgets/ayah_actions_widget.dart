@@ -16,32 +16,20 @@ class AyahActionsWidget extends StatelessWidget {
 
   final Ayah ayah;
 
-  String updateAyahReader(String url, String reader) {
-    final segments = url.split("/");
-    segments[segments.length - 2] = reader;
-
-    return segments.join("/");
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ReaderCubit, ReaderState>(
-      builder: (context, state) {
-        String? url;
+    return BlocConsumer<ReaderCubit, ReaderState>(
+      listener: (context, state) {
         if (state is ReaderSelected) {
-          url = updateAyahReader(ayah.audio, state.selectedReader.identifier);
+          ayah.updateAudioReader(state.selectedReader.identifier);
         }
+      },
+      builder: (context, state) {
         return RepositoryProvider(
           create: (context) => AudioPlayerHelper(),
           child: Builder(
             builder: (context) {
               final audioPlayerHelper = context.read<AudioPlayerHelper>();
-              if (url != null) {
-                audioPlayerHelper.stop();
-                audioPlayerHelper.release();
-              }
-              audioPlayerHelper.setSource(url ?? ayah.audio);
-              print("AyahActionsWidget: $url");
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 13.aw, vertical: 10.ah),
                 decoration: BoxDecoration(

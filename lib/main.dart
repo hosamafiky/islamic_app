@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:islamic_app/core/helpers/cache_helper.dart';
 import 'package:islamic_app/core/routing/app_router.dart';
+import 'package:islamic_app/features/last_read/presentation/cubit/last_read_cubit.dart';
 import 'package:islamic_app/features/quran/data/datasources/quran_local_data_source.dart';
 import 'package:islamic_app/features/quran/data/datasources/quran_remote_data_source.dart';
 import 'package:islamic_app/features/quran/data/repositories/quran_repository_impl.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => LastReadCubit(cacheHelper: CacheHelper())),
         BlocProvider(
           create: (context) => QuranCubit(
             getPagesUsecase: GetPagesUsecase(

@@ -57,21 +57,9 @@ class _QuranPagesListState extends State<QuranPagesList> {
           controller: scrollController,
           itemBuilder: (context, index) => ListTile(
             visualDensity: VisualDensity.compact,
-            title: Text(
-              'Page ${state.pages[index].index}',
-              style: TextStyle(
-                color: Theme.of(context).primaryColorDark,
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
-            ),
+            title: Text('Page ${state.pages[index].index}'),
             subtitle: Text(
               'Start: ${state.pages[index].start.verse.split('_').last} - End: ${state.pages[index].end.verse.split('_').last}',
-              style: TextStyle(
-                color: Theme.of(context).appBarTheme.iconTheme?.color,
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
-              ),
             ),
           ),
           separatorBuilder: (context, index) => const Divider(indent: 20, endIndent: 20),

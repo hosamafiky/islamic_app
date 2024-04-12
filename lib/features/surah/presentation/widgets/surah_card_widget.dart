@@ -56,7 +56,12 @@ class SurahCardWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const WidgetSpan(child: CircleAvatar(radius: 3, backgroundColor: Colors.white)),
+                  WidgetSpan(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0).copyWith(bottom: 4),
+                      child: const CircleAvatar(radius: 3, backgroundColor: Colors.white),
+                    ),
+                  ),
                   TextSpan(
                     text: '${surah.ayahs.length} Ayahs',
                     style: LightAppTextStyles.medium16.copyWith(

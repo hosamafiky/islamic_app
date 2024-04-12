@@ -10,8 +10,8 @@ class AudioPlayerHelper {
     return await _audioPlayer.setSource(UrlSource(url));
   }
 
-  Future<void> play() async {
-    return await _audioPlayer.play(_audioPlayer.source ?? UrlSource(url));
+  Future<void> play([String? url]) async {
+    return await _audioPlayer.play(UrlSource(url ?? this.url));
   }
 
   Future<void> pause() async {
