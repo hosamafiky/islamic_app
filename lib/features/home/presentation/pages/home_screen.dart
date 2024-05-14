@@ -67,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               24.vsb,
               const LastReadWidget(),
-              24.vsb,
               const TabbarWidget(),
               const Expanded(
                 child: TabBarView(
